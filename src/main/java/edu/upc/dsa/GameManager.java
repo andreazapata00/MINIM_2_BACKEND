@@ -1,6 +1,7 @@
 package edu.upc.dsa;
 
 import edu.upc.dsa.exception.*;
+import edu.upc.dsa.models.Faq;
 import edu.upc.dsa.models.Item;
 import edu.upc.dsa.models.Usuari;
 
@@ -17,6 +18,11 @@ public interface GameManager {
     public List<Item> llistarItemsPerPreuAscendent();
 
     public Item obtenirItemPerColor(String color);
+
+    List<Faq> getAllFaqs();
+    void addFaq(Faq faq);
+    void removeFaq(String faqId);
+
 
     //mètodes extres
     public void deleteUsuari(String id);

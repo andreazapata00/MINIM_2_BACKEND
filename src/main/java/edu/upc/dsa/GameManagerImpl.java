@@ -1,6 +1,7 @@
 package edu.upc.dsa;
 
 import edu.upc.dsa.exception.*;
+import edu.upc.dsa.models.Faq;
 import edu.upc.dsa.models.Item;
 import edu.upc.dsa.models.Usuari;
 
@@ -8,10 +9,16 @@ import java.util.*;
 
 import org.apache.log4j.Logger;
 
+import java.util.Arrays;
+import java.util.List;
+
+
+
 public class GameManagerImpl implements GameManager {
     private static GameManager instance;
     protected List<Usuari> usuaris;
     protected List<Item> items;
+    private List<Faq> faqs;
     final static Logger logger = Logger.getLogger(GameManagerImpl.class);
 
     private GameManagerImpl() {
@@ -210,4 +217,29 @@ public class GameManagerImpl implements GameManager {
         logger.warn("not found " + color);
         return null;
     }
+
+    @Override
+    public List<Faq> getAllFaqs() {
+        return faqs;
+    }
+
+    @Override
+    public void addFaq(Faq faq) {
+        faqs.add(faq);
+    }
+
+    @Override
+    public void removeFaq(String faqId) {
+        Iterator<Faq> iterator = faqs.iterator();
+        while (iterator.hasNext()) {
+            Faq faq = iterator.next();
+            if (faq.getId().equals(faqId)) {
+                iterator.remove();
+                break; // Salir del bucle una vez que se elimina la FAQ
+            }
+        }
+    }
+
+
+
 }
